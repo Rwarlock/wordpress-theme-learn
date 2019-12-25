@@ -23,12 +23,28 @@ function wphierarchy_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
 
-
-
 //Register Menu Locations
 
 register_nav_menus([
     'main-menu' => esc_html__('Main Menu', 'wpheirarchy')
 ]);
+
+
+
+// Setup Widget Areas
+
+function wphierarchy_widgets_init() {
+    register_sidebar([
+        'name'          => esc_html__('Main Sidebar', 'wphierarchy'),
+        'id'            => 'main-sidebar',
+        'description'   => esc_html__('Adds a widget'),
+        'before_widget' => '<section class="widget">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>'
+    ]);   
+}
+add_action('widgets_init', 'wphierarchy_widgets_init');
+
 
 ?>
